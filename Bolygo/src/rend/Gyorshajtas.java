@@ -2,34 +2,44 @@ package rend;
 
 
 public class Gyorshajtas extends Szabalysertes {
-	private int tullepte;
+	private double tullepte;
 
-	public Gyorshajtas(int Alapbirsag, String Elkovetonev, int tullepte) {
+	public Gyorshajtas(int Alapbirsag, String Elkovetonev, double tullepte) {
 		super(Alapbirsag, Elkovetonev);
 		this.tullepte = tullepte;
 	}
-	public Gyorshajtas(int Alapbirsag, String Elkovetonev) {
-		super(Alapbirsag,Elkovetonev);
-		
+
+
+	public double getTullepte() {
+		return tullepte;
+	}
+
+
+
+	public void setTullepte(double tullepte) {
+		this.tullepte = tullepte;
+	}
 	
+	@Override
+	public double Fizetendo() {
 		
+		return (getAlapbirsag() * (getTullepte()/100+1));
 	}
-	public static boolean tobbE(Gyorshajtas egyik, Gyorshajtas masik) {
-		return ((egyik.Fizetendo()) > (masik.Fizetendo()));
-	}
+
 
 
 	@Override
-	public int Fizetendo() {
-		return getAlapbirsag() * (tullepte/100+1);
-	}
-	
-	
 	public String toString() {
-		String message="Elkoveto neve: "+ getElkovetonev()+ " Fizetendo birsag: "+ Fizetendo();
-		return message;
+		return "Elkoveto neve: "+ getElkovetonev()+ " Fizetendo birsag: "+ Fizetendo();
+		
 	}
 	
-	
+	public static boolean tobbE(Gyorshajtas egyik, Gyorshajtas masik) {
+		if(egyik.Fizetendo() > masik.Fizetendo()) {
+			return true;
+		}else {
+		return false;
+		}
+	}
 	
 }
