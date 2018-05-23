@@ -3,6 +3,7 @@ package galaxis;
 public class Bolygo extends Egitest {
 	private float keringesiido;
 	private int atmero;
+	public float[] konstans = {(float)0.78,(float)0.39,(float)2.65,(float)1.17,(float)1.05,(float)1.23};
 	
 	public Bolygo(String nev, float keringesiido, int atmero) {
 		super(nev);
@@ -15,16 +16,8 @@ public class Bolygo extends Egitest {
 		return keringesiido;
 	}
 
-	public void setKeringesiido(float keringesiido) {
-		this.keringesiido = keringesiido;
-	}
-
 	public int getAtmero() {
 		return atmero;
-	}
-
-	public void setAtmero(int atmero) {
-		this.atmero = atmero;
 	}
 	@Override
 	public String toString() {
@@ -47,23 +40,12 @@ public class Bolygo extends Egitest {
 			return masik.getKeringesiido();
 		}
 	}
-	/*private float folditomeg;
-	float[] konstans = {(float)0.78,(float)0.39,(float)2.65,(float)1.17,(float)1.05,(float)1.23};
 	
-	public float[] getKonstans() {
-		return konstans;
-	}
-																	//EZ SZAR, de ezen kívül mûködik
-	public void setKonstans(float[] konstans) {
-		this.konstans = konstans;
-	}
 
 	@Override
-	public  float atszamitTomeg() {
-		float tomeg;
-		tomeg = (getFolditomeg() * getKonstans());
-		return tomeg;
-	}*/
+	public float atszamitTomeg(int tomeg, int index) {
+		return tomeg * konstans[index];
+	}
 	
 	
 

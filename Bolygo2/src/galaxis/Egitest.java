@@ -12,5 +12,5 @@ public abstract class Egitest {
 		return nev;
 		}
 	
-	//public abstract float atszamitTomeg();
+	public abstract float atszamitTomeg(int tomeg, int index);
 }

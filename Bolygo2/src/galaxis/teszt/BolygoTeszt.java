@@ -10,52 +10,46 @@ public class BolygoTeszt {
 		
 		Bolygo[] tomb = new Bolygo[8];
 		
-		tomb[0]= new Bolygo ("Merkur", (float)0.24 , 4878);
-		tomb[1]= new Bolygo("Venusz", (float)0.62 , 12104);
-		tomb[2]= new Bolygo ("Fold" , (float)1 , 12756);
-		tomb[3]= new Bolygo ("Mars" , (float)1.88, 6794);
-		tomb[4]= new Bolygo("Jupiter" , (float)11.86 , 142800);
-		tomb[5]= new Bolygo("Szaturnusz", (float)29.46 , 120000);
-		tomb[6]= new Bolygo("Uranusz", (float)84.04 , 50800);
-		tomb[7]= new Bolygo("Neptunusz", (float)164.79, 48600);
+		tomb[0]= new Bolygo ("Merkur", 0.24f , 4878);
+		tomb[1]= new Bolygo("Venusz", 0.62f , 12104);
+		tomb[2]= new Bolygo ("Fold" , 1f , 12756);
+		tomb[3]= new Bolygo ("Mars" , 1.88f, 6794);
+		tomb[4]= new Bolygo("Jupiter" , 11.86f , 142800);
+		tomb[5]= new Bolygo("Szaturnusz", 29.46f , 120000);
+		tomb[6]= new Bolygo("Uranusz", 84.04f , 50800);
+		tomb[7]= new Bolygo("Neptunusz", 164.79f, 48600);
 		
 		for (Bolygo valami : tomb) {
-			System.out.println(valami);
+			System.out.println(valami.toString());
 		}
 		
-		float legkisebb;
-		String nev;
-		float kerido;
-		int atmero;
-		if(Bolygo.nagyobbE(tomb[0], tomb[1])){
-			legkisebb = tomb[1].getAtmero();
-			nev = tomb[1].getNev();
-			kerido = tomb[1].getKeringesiido();
-			atmero =tomb[1].getAtmero();
-		}else {
-			legkisebb = tomb[0].getAtmero();
-			nev = tomb[0].getNev();
-			kerido = tomb[0].getKeringesiido();
-			atmero =tomb[0].getAtmero();
-		}
-		
-		int i;
-		for(i=2; i < tomb.length; i++) {
-			if(legkisebb > tomb[i].getAtmero()) {
-				legkisebb = tomb[i].getAtmero();
-				nev = tomb[i].getNev();
-				kerido = tomb[i].getKeringesiido();
-				atmero =tomb[i].getAtmero();
+		int minAtmero = 0;
+		for (int i = 0; i < tomb.length; i++) {
+			if(tomb[i].getAtmero() < tomb[minAtmero].getAtmero()) {
+				minAtmero = i;
 			}
 		}
-		System.out.println("A legkisebb atmeroju bolygo adatai: "+nev+ " "+ kerido+ " "+atmero);
-		int db =0;
-		for (int j=0 ; j< tomb.length; j++) {
-			if(Bolygo.rovidebbKeringesiido(tomb[2], tomb[j]) == tomb[j].getKeringesiido()) {
+		System.out.println("A legkisebb atmeroju bolygo adatai: "+tomb[minAtmero].getNev()+ " "+ tomb[minAtmero].getKeringesiido()+ " "+tomb[minAtmero].getAtmero());
+		
+		
+		int db = 0;
+		for (int j = 0; j< tomb.length; j++) {
+			if(tomb[j].getKeringesiido() < tomb[2].getKeringesiido()) {
 				db++;
 			}
 		}
-		System.out.println("Ennyi bolygonak rovidebb a keringesi ideje mint a Folde: "+(db-1));
+		System.out.println("Ennyi bolygonak rovidebb a keringesi ideje mint a Folde: "+(db));
+		
+		Scanner input = new Scanner (System.in);
+		for (int i = 0; i < 3; i++) {
+			System.out.println("Add meg a tömeget: ");
+			int tomeg = input.nextInt();
+			System.out.println("Add meg az indexet (0-5): ");
+			int index = input.nextInt();
+			System.out.println(tomb[i].atszamitTomeg(tomeg, index));
+		}
+		
+		input.close();
 			
 		
 		
